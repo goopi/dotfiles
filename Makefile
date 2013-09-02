@@ -1,7 +1,7 @@
 install: link install-brew install-osx
 
 link: install-bash install-screen install-tmux \
-	install-git install-python
+	install-vim install-git install-python
 
 install-brew:
 	@sh -c `pwd`/homebrew/install-brew.sh
