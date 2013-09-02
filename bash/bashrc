@@ -1,0 +1,96 @@
+# history
+HISTCONTROL=ignoredups
+HISTSIZE=500
+HISTFILESIZE=500
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+  xterm-color) color_prompt=yes;;
+esac
+
+# http://henrik.nyh.se/2008/12/git-dirty-prompt
+#   ~/dev/dir[master]$   # clean working directory
+#   ~/dev/dir[master*]$  # dirty working directory
+parse_git_dirty() {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+
+parse_git_branch() {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)] /"
+}
+
+# gs
+_gs_ps1() {
+  [[ -z $GS_NAME ]] || echo "$GS_NAME "
+}
+
+# current virtualenv
+_venv_ps1() {
+  [[ -z $VIRTUAL_ENV ]] || echo "(${VIRTUAL_ENV##*/}) "
+}
+
+# don't let virtualenv show prompts by itself
+VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# prompt
+export PS1="\
+\[\033[01;33m\]\$(_venv_ps1)\$(_gs_ps1)\
+\[\033[01;32m\]\w \
+\[\033[01;31m\]\$(parse_git_branch \"(%s ) \")\
+\[\033[01;33m\]λ\[\033[00m\] "
+
+# if this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+  PS1="\[\e]0;\u@\h: \w\a\]$PS1"
+  ;;
+*)
+  ;;
+esac
+
+# colored `grep`
+export GREP_OPTIONS="--color=auto" GREP_COLOR="1;32"
+
+# for `ls`
+export CLICOLOR=1
+export LSCOLORS=ExGxFxDxCxHxHxCbCeEbEb
+
+# internationalization variables
+export LC_CTYPE=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# editor
+export EDITOR=vim
+export GIT_EDITOR=vim
+
+# your project folder that we can `c [tab]` to
+export PROJECTS=~/goopi
+
+# load *.sh files
+if [ -f ~/.bash/aliases.sh ]; then source ~/.bash/aliases.sh; fi
+if [ -f ~/.bash/functions.sh ]; then source ~/.bash/functions.sh; fi
+if [ -f ~/.bash/completion.sh ]; then source ~/.bash/completion.sh; fi
+
+# node
+export NODE_ENV="development"
+export PATH="/usr/local/share/npm/bin:$PATH"
+
+# python
+export PYTHONSTARTUP=~/.pythonstartup.py
+
+# virtualenvwrapper and pip
+export WORKON_HOME=$HOME/.venvs
+[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
+
+# lein2
+export PATH="$HOME/.lein/bin:$PATH"
+
+# heroku
+export PATH="/usr/local/heroku/bin:$PATH"

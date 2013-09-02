@@ -1,0 +1,29 @@
+; vim:ft=gitconfig:
+
+[user]
+  name = Gustavo Leguizamon
+  email = leguizamon.gustavo@gmail.com
+[github]
+  user = goopi
+[color]
+  ui = true
+[core]
+  excludesfile = ~/.gitignore
+[color "branch"]
+  current = red
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = cyan
+  frag = magenta
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[alias]
+  today = diff @{yesterday}.. --stat
+  meh = commit --amend
+  lasttag = describe --tags --abbrev=0
+  gflog = log -p --cc --graph --decorate

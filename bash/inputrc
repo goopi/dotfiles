@@ -1,0 +1,51 @@
+# vi keybindings for everything that uses readline
+set editing-mode vi
+set keymap vi
+
+$if mode=vi
+  set keymap vi-command
+  "gg": beginning-of-history
+  "G": end-of-history
+
+  set keymap vi-insert
+  "\C-l": clear-screen
+  "\C-w": backward-kill-word
+  "\C-a": beginning-of-line
+  "\C-e": end-of-line
+  "\e[5C": forward-word
+  "\e[5D": backward-word
+  # auto-complete from the history
+  "\C-p": history-search-backward
+  "\C-n": history-search-forward
+$endif
+
+# Make Tab autocomplete regardless of filename case
+set completion-ignore-case on
+
+# List all matches in case multiple possible completions are possible
+set show-all-if-ambiguous on
+
+# Show all autocomplete results at once
+set page-completions off
+
+# By default up/down are bound to previous-history
+# and next-history respectively. The following does the
+# same but gives the extra functionality where if you
+# type any text (or more accurately, if there is any text
+# between the start of the line and the cursor),
+# the subset of the history starting with that text
+# is searched (like 4dos for e.g.).
+# Note to get rid of a line just Ctrl-C
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# If there are more than 200 possible completions for a word, ask to show them all
+set completion-query-items 200
+
+# Show extra file information when completing, like `ls -F` does
+set visible-stats on
+
+# Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
+set input-meta on
+set output-meta on
+set convert-meta off
