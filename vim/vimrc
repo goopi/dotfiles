@@ -29,6 +29,7 @@ Bundle 'leshill/vim-json'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'mattn/zencoding-vim'
+Bundle 'mitsuhiko/fruity-vim-colorscheme'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdtree'
@@ -142,7 +143,7 @@ set background=dark
 if has('gui_running')
   set t_Co=256                " tell the term has 256 colors
   set guioptions=haMR         " hide most gui elements (menu, toolbar, scrollbar)
-  colorscheme Tomorrow-Night-Bright
+  colorscheme fruity
   if has('gui_macvim')
     set guifont=Menlo:h14
   endif
