@@ -1,22 +1,19 @@
-" vimrc
-" Author: Gustavo Leguizamon (@goopi)
-
+" no compatibility
 set nocompatible
 
 " needed for vundle, will be turned on after vundle inits
 filetype off
 
+" matchit
 runtime macros/matchit.vim
 
 " setup vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Vundle configuration                            "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" vundles
 Bundle 'Align'
+Bundle 'ap/vim-css-color'
 Bundle 'closetag.vim'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'epmatsw/ag.vim'
@@ -26,147 +23,248 @@ Bundle 'Indent-Guides'
 Bundle 'IndexedSearch'
 Bundle 'itchyny/lightline.vim'
 Bundle 'kien/ctrlp.vim'
-Bundle 'leshill/vim-json'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/zencoding-vim'
 Bundle 'mitsuhiko/fruity-vim-colorscheme'
+Bundle 'mitsuhiko/vim-jinja'
+Bundle 'mitsuhiko/vim-python-combined'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'Shougo/neocomplcache.vim'
 Bundle 'tComment'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-" Bundle 'Valloric/YouCompleteMe'
+Bundle 'tpope/vim-vividchalk'
 Bundle 'VimClojure'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'wavded/vim-stylus'
-" snippets
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
 
-" enable detection, plugins and indenting
+" enable filetype plugins and indentation
 filetype plugin indent on
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               General settings                              "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " backups and swap files
 set nobackup
 set nowritebackup
 set noswapfile
 
-" behaviors
-set autoread                  " automatically reload changes if detected
-set autowrite                 " writes on make/shell commands
-set hidden                    " change buffer - without saving
-set history=768               " number of things to remember in history
-set cf                        " enable error files & error jumping
-set clipboard+=unnamed        " use the system clipboard
-set timeoutlen=250            " time to wait for a command (after leader for example)
+" utf-8 default encoding
+set enc=utf-8
+
+" prefer unix over windows over os9 formats
+set fileformats=unix,dos,mac
+
+" automatically reload changes if detected
+set autoread
+
+" writes on make/shell commands
+set autowrite
+
+" change buffer - without saving
+set hidden
+
+" number of things to remember in history
+set history=768
+
+" enable error files & error jumping
+set cf
+
+" use the system clipboard
+set clipboard+=unnamed
+
+" time to wait for a command (after leader for example)
+set timeoutlen=250
+
+" automatic formatting
 set formatoptions=crql
-set iskeyword+=$,@            " add extra characters that are valid parts of variables
-set nostartofline             " don't go to the start of the line after some commands
-set scrolloff=3               " keep three lines below the last line when scrolling
-set nofoldenable              " disable folding
-set pastetoggle=<F6>          " pasting large amounts of text
 
-" searching
-set hlsearch                  " highlight all search matches
-set ignorecase                " case insensitive search
-set smartcase                 " pay attention to case when caps are used
-set incsearch                 " show matches while typing
-set gdefault                  " assume /g flag on :s searches
+" add extra characters that are valid parts of variables
+set iskeyword+=$,@
 
-" visual
-syntax on                     " turn on syntax highlighting
-set showmatch                 " show matching brackets
-set matchtime=2               " how many tenths of a second to blink
-set cursorline                " highlight current line
-set nolist                    " show invisible characters off
+" don't go to the start of the line after some commands
+set nostartofline
+
+" keep three lines below the last line when scrolling
+set scrolloff=3
+
+" disable folding
+set nofoldenable
+
+" pasting large amounts of text
+set pastetoggle=<F6>
+
+" highlight all search matches
+set hlsearch
+
+" case insensitive search
+set ignorecase
+
+" pay attention to case when caps are used
+set smartcase
+
+" show matches while typing
+set incsearch
+
+" assume /g flag on :s searches
+set gdefault
+
+" turn on syntax highlighting
+syntax on
+
+" show matching brackets
+set showmatch
+
+" how many tenths of a second to blink
+set matchtime=2
+
+" highlight current line
+if has('gui_running')
+  set cursorline
+endif
+
+" show invisible characters off
+set nolist
+
+" strings in 'list' mode
 set listchars=tab:>>,trail:~,extends:#,nbsp:.,eol:$
-set ruler                     " ruler on
-set rulerformat=%l:%c ruler   " display current column/line in bottom right
-set nonumber                  " line numbers off
-set laststatus=2              " always show the statusline
-set cmdheight=1               " make the command area one line high
-set encoding=utf-8            " enable unicode support
-set noshowmode                " don't show the mode since Powerline shows it
-set title                     " set the title of the window in the terminal to the file
-set statusline=%<%f\          " custom statusline
-set statusline+=[%{&ff}]      " show fileformat
-set statusline+=%y%m%r%=
-set statusline+=%-14.(%l,%c%V%)\ %P
+
+" ruler on
+set ruler
+
+" display current column/line in bottom right
+set rulerformat=%l:%c ruler
+
+" set the title of the window in the terminal to the file
+set title
+
+" fast terminal
+set ttyfast
+
+" line numbers on
+set number
+
+" make the command area one line high
+set cmdheight=1
+
+" show (partial) command
+set showcmd
+
+" always show the statusline
+set laststatus=2
+
+" custom statusline
+set statusline=[%l,%v\ %P%M]\ %f\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}
 
 " indentation
-set tabstop=2                 " tabs are 2 spaces
-set softtabstop=2
-set shiftwidth=2              " number of spaces used when indenting
-set expandtab                 " always insert spaces instead of Tab
-set smarttab
 set autoindent
 set cindent
-set indentkeys-=0#            " do not break indent on #
+" do not break indent on #
+set indentkeys-=0#
 set cinkeys-=0#
 set cinoptions=:s,ps,ts,cs
 set cinwords=if,else,while,do,for,switch,case
-set nowrap                    " line wrapping off
-set textwidth=0               " don't wrap lines by default
-set backspace=indent,eol,start  " backspace over anything
-set backspace=2               " delete everything with backspace
+
+" tabs are 2 spaces
+set tabstop=2
+set softtabstop=2
+
+" number of spaces used when indenting
+set shiftwidth=2
+
+" always insert spaces instead of Tab
+set expandtab
+set smarttab
+
+" line wrapping off
+set nowrap
+
+" don't wrap lines by default
+set textwidth=0
+
+" backspace over anything
+set backspace=indent,eol,start
+
+" delete everything with backspace
+set backspace=2
 
 " autocompletion
-set completeopt=menuone
-set wildmenu                  " enable command-line tab completion
+set completeopt=menuone,menu,longest
+
+" use <Tab> for autocompletion
+inoremap <Tab> <C-r>=CleverTab()<CR>
+fun! CleverTab()
+  if strpart(getline('.'), 0, col('.')-1) =~ '^\s*$'
+    return "\<Tab>"
+  else
+    return "\<C-n>"
+  endif
+endfunction
+
+" popup menu
+inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <Right> pumvisible() ? "\<C-y>" : "\<Right>"
+inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+
+" enable command-line tab completion
+set wildmenu
 set wildmode=list:longest,full
 
-" mouse
-set mousehide                 " hide mouse after chars typed
-set mouse=a                   " mouse in all modes
+" exclude from search
+set wildignore+=*.swp,node_modules\*,.git\*,.gs\*,*.o,*.pyc,*.jpg,*.jpeg,*.png,*.gif
 
-" sounds
-set novisualbell              " no blinking
-set noerrorbells              " no noise
-set vb t_vb=                  " disable any beeps or flashes on error
+" hide mouse after chars typed
+set mousehide
 
-" color, font
+" mouse in all modes
+set mouse=a
+
+" no blinking
+set novisualbell
+
+" no noise
+set noerrorbells
+
+" disable any beeps or flashes on error
+set vb t_vb=
+
+" syntax colors and font
 set background=dark
-
 if has('gui_running')
-  set t_Co=256                " tell the term has 256 colors
-  set guioptions=haMR         " hide most gui elements (menu, toolbar, scrollbar)
+  " the term has 256 colors
+  set t_Co=256
+
+  " hide most gui elements (menu, toolbar, scrollbar)
+  set guioptions=haMR
+
   colorscheme fruity
   if has('gui_macvim')
     set guifont=Menlo:h14
   endif
 else
-  " dont load csapprox if there is no gui support - silences an annoying warning
+  " dont load csapprox if there is no gui support, silences warning
   let g:CSApprox_loaded = 1
+
   if $TERM == 'xterm-256color' || $TERM == 'screen-256color'
-    set t_Co=256              " tell the term has 256 colors
+    " the term has 256 colors
+    set t_Co=256
+
     set term=xterm-256color
-    colorscheme Tomorrow-Night-Bright
+    colorscheme vividchalk
   else
     colorscheme default
   endif
 endif
 
 " set up some custom colors
-highlight Visual      ctermbg=3       ctermfg=0
-highlight Visual      guibg=Yellow    guifg=Black
-highlight Pmenu       ctermbg=9       ctermfg=15
-highlight Pmenu       guibg=DarkRed   guifg=White
-highlight PmenuSel    ctermbg=15      ctermfg=0
-highlight PmenuSel    guibg=White     guifg=Black
+highlight Visual    ctermbg=3   ctermfg=0
+highlight Pmenu     ctermbg=9   ctermfg=15
+highlight PmenuSel  ctermbg=15  ctermfg=0
+highlight Search    ctermbg=9   ctermfg=15
 
 " set up easymotion colors
 highlight EasyMotionTarget ctermbg=NONE ctermfg=DarkRed
@@ -174,12 +272,12 @@ highlight EasyMotionTarget guibg=NONE   guifg=Red
 highlight EasyMotionShade  ctermbg=NONE ctermfg=Grey
 highlight EasyMotionShade  guibg=NONE   guifg=Grey
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                   Mappings                                  "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" sets leader to ',' and localleader to '\'
 let mapleader = ','
-let maplocalleader = '	'     " tab as a local leader
+let maplocalleader='\\'
+
+" ; is an alias for :
+nnoremap ; :
 
 " map . in visual mode
 vnoremap . :norm.<CR>
@@ -187,8 +285,12 @@ vnoremap . :norm.<CR>
 " clear search
 nmap <silent> <C-h> :silent noh<CR>
 
+" split management
+nnoremap <leader>sv <C-w>v<C-w>l
+nnoremap <leader>s :new<CR>
+
 " highlight 80+ cols
-map ,8 /\%>80v.\+<CR>
+map <leader>8 /\%>80v.\+<CR>
 
 " strip trailing whitespace
 map <C-c> :%s/\s\+$//<CR>
@@ -197,16 +299,21 @@ map <C-c> :%s/\s\+$//<CR>
 map <leader>w :%s/\s\+$//gce \| w<CR>
 
 " delete all trailing whitespace for each file in repo
-map <leader>W :args `git grep -lI .` \| argdo %s/\s\+$//gce \| w<CR>
+map <leader>wa :args `git grep -lI .` \| argdo %s/\s\+$//gce \| w<CR>
 
 " toggle invisible chars
-:noremap ,i :set list!<CR>
+map <leader>i :set list!<CR>
 
 " save as sudo
-ca w!! w !sudo tee "%"
+ca w!! w !sudo tee % >/dev/null
 
-" vimrc
-map <leader>v :sp ~/.vimrc<CR>
+" quit window on <leader>q
+nnoremap <leader>q :q<CR>
+
+" split edit vimrc
+map <leader>v :vsp ~/.vimrc<CR>
+
+" reload vimrc
 map <leader>rs :source ~/.vimrc<CR>
 
 " silver searcher
@@ -218,29 +325,40 @@ imap <F5> <ESC>:setlocal spell! spelllang=en<CR>
 
 " git commands
 map <leader>g :Gblame<CR>
-map <leader>l :!clear && git log -p %<CR>
-map <leader>d :!clear && git diff %<CR>
+map <leader>gl :!clear && git log -p %<CR>
+map <leader>gd :!clear && git diff %<CR>
 
 " map markdown preview
 map <leader>m :!open -a Mou %<CR><CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                   Plugins                                   "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" easy switching
+nnoremap <leader>th :set ft=html<CR>
+nnoremap <leader>tp :set ft=python<CR>
+nnoremap <leader>tj :set ft=javascript<CR>
+
+" toggle between number and relative number on <leader>l
+nnoremap <leader>l :call ToggleRelativeAbsoluteNumber()<CR>
+fun! ToggleRelativeAbsoluteNumber()
+  if &number
+    set relativenumber
+  else
+    set number
+  endif
+endfunction
 
 " easymotion
 let g:EasyMotion_leader_key = '<leader><leader>'
 
-" Indent-Guides
+" indent-guides
 let g:indent_guides_guide_size = 1
 
 " ctrlp
 let g:ctrlp_map = '<leader>t'
+let g:ctrlp_match_window = 'bottom,order:top,min:1,max:20'
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 20
 let g:ctrlp_working_path_mode = 'ra'
 nmap <leader>b :CtrlPBuffer<CR>
-set wildignore+=*.swp,node_modules\*,.git\*,.gs\* " exclude from search
 
 " seek
 let g:SeekKey = '<Space>'
@@ -250,14 +368,10 @@ let g:SeekBackKey = '<U-Space>'
 let g:closetag_html_style = 1
 
 " NERDTree
-let NERDTreeIgnore = ['\.pyc$',]
+let NERDTreeIgnore = ['\~$', '\.pyc$', '\.pyo$', '\.class$', '\.o$']
 map <silent> <leader>n :NERDTreeToggle<CR>
+map <silent> <leader>f :NERDTreeFind<CR>
 let g:NERDTreeDirArrows=0
-
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
 
 " vundle
 nmap <leader>bi :BundleInstall<CR>
@@ -273,14 +387,9 @@ let g:lightline = {
       \   'fugitive': 'MyFugitive',
       \ },
       \ }
-
 fun! MyFugitive()
   return exists('*fugitive#head') ? fugitive#head() : ''
 endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 Functions                                   "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " rename current file, via Gary Bernhardt
 fun! RenameFile()
@@ -294,15 +403,28 @@ fun! RenameFile()
 endfunction
 map <leader>rn :call RenameFile()<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               Automatic cmds                                "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" do syntax highlight syncing from start
+autocmd BufEnter * :syntax sync fromstart
 
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
-autocmd BufRead,BufNewFile {Gemfile,Rakefile,*.rake,config.ru} set ft=ruby
+" c
+autocmd FileType c setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+autocmd FileType c setlocal commentstring=/*\ %s\ */
 
-" omni completion
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" css
+autocmd FileType css setlocal commentstring=/*\ %s\ */
+
+" html
+autocmd FileType html setlocal commentstring=<!--\ %s\ -->
+autocmd FileType htmljinja setlocal commentstring={#\ %s\ #}
+let html_no_rendering=1
+
+" javascript
+autocmd BufNewFile,BufRead *.json setlocal ft=javascript
+autocmd FileType javascript setlocal commentstring=//\ %s
+
+" python
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+
+" ruby
+autocmd BufRead,BufNewFile {Gemfile,Rakefile,*.rake,config.ru} set ft=ruby
