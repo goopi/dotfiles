@@ -42,7 +42,7 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 # prompt
 export PS1="\
 \[\033[01;33m\]\$(_venv_ps1)\$(_gs_ps1)\
-\[\033[01;32m\]\w \
+\[\033[01;32m\]\W \
 \[\033[01;31m\]\$(parse_git_branch \"(%s ) \")\
 \[\033[01;33m\]λ\[\033[00m\] "
 
