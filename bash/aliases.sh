@@ -16,6 +16,7 @@ alias h="history"
 
 # vim
 alias v="vim"
+alias vv="mvim"
 alias vi="v"
 alias vu="v +BundleInstall +qall"
 
