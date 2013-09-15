@@ -94,3 +94,6 @@ export PATH="$HOME/.lein/bin:$PATH"
 
 # heroku
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# homebrew
+export PATH="/usr/local/bin:$PATH"
