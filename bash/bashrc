@@ -87,7 +87,7 @@ export PYTHONSTARTUP=~/.pythonstartup.py
 
 # virtualenvwrapper and pip
 export WORKON_HOME=$HOME/.venvs
-[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
+[[ -s "/usr/local/bin/virtualenvwrapper_lazy.sh" ]] && source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 # lein2
 export PATH="$HOME/.lein/bin:$PATH"
