@@ -89,6 +89,10 @@ export PYTHONSTARTUP=~/.pythonstartup.py
 export WORKON_HOME=$HOME/.venvs
 [[ -s "/usr/local/bin/virtualenvwrapper_lazy.sh" ]] && source /usr/local/bin/virtualenvwrapper_lazy.sh
 
+# go
+export GOPATH=$HOME/goopi/go
+export PATH=$PATH:$GOPATH/bin
+
 # lein2
 export PATH="$HOME/.lein/bin:$PATH"
 
