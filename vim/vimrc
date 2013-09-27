@@ -17,6 +17,7 @@ Bundle 'ap/vim-css-color'
 Bundle 'closetag.vim'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'epmatsw/ag.vim'
+Bundle 'fsouza/go.vim'
 Bundle 'gmarik/vundle'
 Bundle 'goldfeld/vim-seek'
 Bundle 'Indent-Guides'
@@ -415,6 +416,10 @@ autocmd FileType c setlocal commentstring=/*\ %s\ */
 
 " css
 autocmd FileType css setlocal commentstring=/*\ %s\ */
+
+" go
+autocmd BufNewFile,BufRead *.go setlocal ft=go
+autocmd FileType go setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 
 " html
 autocmd FileType html setlocal commentstring=<!--\ %s\ -->
