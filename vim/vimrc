@@ -74,7 +74,9 @@ set history=768
 set cf
 
 " use the system clipboard
-set clipboard+=unnamed
+if $TMUX == ''
+  set clipboard+=unnamed
+endif
 
 " time to wait for a command (after leader for example)
 set timeoutlen=250
