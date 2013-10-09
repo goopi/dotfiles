@@ -33,6 +33,7 @@ alias ios="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimul
 alias st="git status -sb"
 alias g="git"
 alias ga="git add"
+alias gau="git add -u"
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias gc="git commit -m"
