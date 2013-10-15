@@ -194,7 +194,7 @@ set backspace=indent,eol,start
 set backspace=2
 
 " autocompletion
-set completeopt=menuone,menu,longest
+set completeopt=menuone,menu
 
 " use <Tab> for autocompletion
 inoremap <Tab> <C-r>=CleverTab()<CR>
