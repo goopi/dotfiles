@@ -221,7 +221,7 @@ set wildmenu
 set wildmode=list:longest,full
 
 " exclude from search
-set wildignore+=*.swp,node_modules\*,.git\*,.gs\*,*.o,*.pyc,*.jpg,*.jpeg,*.png,*.gif
+set wildignore+=*.swp,components\*,node_modules\*,.git\*,.gs\*,*.o,*.pyc,*.jpg,*.jpeg,*.png,*.gif
 
 " hide mouse after chars typed
 set mousehide
@@ -364,7 +364,6 @@ let g:ctrlp_match_window = 'bottom,order:top,min:1,max:20'
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 20
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = '\v[\/]\components$'
 nmap <leader>b :CtrlPBuffer<CR>
 
 " seek
