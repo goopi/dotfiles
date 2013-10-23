@@ -27,3 +27,5 @@
   meh = commit --amend
   lasttag = describe --tags --abbrev=0
   gflog = log -p --cc --graph --decorate
+[push]
+	default = simple
