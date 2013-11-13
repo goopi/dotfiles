@@ -80,6 +80,9 @@ export PYTHONSTARTUP=~/.pythonstartup.py
 export WORKON_HOME=$HOME/.venvs
 [[ -s "/usr/local/bin/virtualenvwrapper_lazy.sh" ]] && source /usr/local/bin/virtualenvwrapper_lazy.sh
 
+#ruby
+export PATH="/usr/local/Cellar/ruby/2.0.0-p247/bin:$PATH"
+
 # go
 export GOPATH=$HOME/goopi/go
 export PATH=$PATH:$GOPATH/bin
