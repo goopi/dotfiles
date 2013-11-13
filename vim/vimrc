@@ -244,8 +244,17 @@ if has('gui_running')
   " the term has 256 colors
   set t_Co=256
 
-  " hide most gui elements (menu, toolbar, scrollbar)
-  set guioptions=haMR
+  " hide menu bar
+  set guioptions-=m
+
+  " hide toolbar
+  set guioptions-=T
+
+  " hide left-hand scrollbar
+  set guioptions-=L
+
+  " hide right-hand scrollbar
+  set guioptions-=r
 
   colorscheme fruity
   if has('gui_macvim')
