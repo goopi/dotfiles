@@ -27,7 +27,7 @@ alias tml="tmux ls"
 alias tma="tmux a -t"
 
 # ios
-alias ios="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
+alias simu="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
 
 # git
 alias st="git status -sb"
