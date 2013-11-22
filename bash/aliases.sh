@@ -1,4 +1,15 @@
 alias reload=". ~/.bash_profile"
+alias disks="df -h"
+alias pu="pushd"
+alias po="popd"
+alias o="open"
+alias h="history"
+
+# kill
+alias ka9="killall -9"
+alias k9="kill -9"
+
+# dirs
 alias 1="cd -"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -7,12 +18,8 @@ alias ll="ls -lF"
 alias la="ls -AF"
 alias lla="ls -AlhF"
 alias lns="ln -s"
+alias lh="ls -alt | head"
 alias rmr="rm -rf"
-alias pu="pushd"
-alias po="popd"
-alias o="open"
-alias k9="killall -9"
-alias h="history"
 
 # vim
 alias v="vim"
@@ -25,6 +32,11 @@ alias tm="tmux"
 alias tmn="tmux new -s"
 alias tml="tmux ls"
 alias tma="tmux a -t"
+
+# networking
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias flush="dscacheutil -flushcache"
+alias listen="lsof -i | grep LISTEN"
 
 # ios
 alias simu="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
