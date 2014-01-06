@@ -21,6 +21,7 @@ install-bash:
 	@ln -sfhv `pwd`/bash/functions.sh ~/.bash/functions.sh
 
 install-vim:
+	@ln -sfhv `pwd`/ctags/ctags ~/.ctags
 	@ln -sfhv `pwd`/vim ~/.vim
 	@ln -sfhv ~/.vim/vimrc ~/.vimrc
 
