@@ -14,7 +14,6 @@ call vundle#rc()
 " vundles
 Bundle 'Align'
 Bundle 'ap/vim-css-color'
-Bundle 'closetag.vim'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'epmatsw/ag.vim'
 Bundle 'fsouza/go.vim'
@@ -25,7 +24,8 @@ Bundle 'IndexedSearch'
 Bundle 'itchyny/lightline.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'mattn/zencoding-vim'
+Bundle 'lsdr/monokai'
+Bundle "mattn/emmet-vim"
 Bundle 'mitsuhiko/fruity-vim-colorscheme'
 Bundle 'mitsuhiko/vim-jinja'
 Bundle 'mitsuhiko/vim-python-combined'
@@ -104,7 +104,7 @@ set scrolloff=3
 set nofoldenable
 
 " pasting large amounts of text
-set pastetoggle=<F6>
+set pastetoggle=<leader>.
 
 " highlight all search matches
 set hlsearch
@@ -263,7 +263,7 @@ if has('gui_running')
   " hide right-hand scrollbar
   set guioptions-=r
 
-  colorscheme fruity
+  colorscheme monokai
   if has('gui_macvim')
     set guifont=Menlo:h14
   endif
@@ -283,10 +283,13 @@ else
 endif
 
 " set up some custom colors
-highlight Visual    ctermbg=3   ctermfg=0
-highlight Pmenu     ctermbg=9   ctermfg=15
-highlight PmenuSel  ctermbg=15  ctermfg=0
-highlight Search    ctermbg=9   ctermfg=15
+highlight Visual    ctermbg=3     ctermfg=0
+highlight Visual    guibg=Yellow  guifg=Black
+highlight Pmenu     ctermbg=9     ctermfg=15
+highlight Pmenu     guibg=DarkRed guifg=White
+highlight PmenuSel  ctermbg=15    ctermfg=0
+highlight PmenuSel  guibg=White   guifg=Black
+highlight Search    ctermbg=9     ctermfg=15
 
 " set up easymotion colors
 highlight EasyMotionTarget ctermbg=NONE ctermfg=DarkRed
@@ -310,6 +313,15 @@ nmap <silent> <C-h> :silent noh<CR>
 " split management
 nnoremap <leader>sv <C-w>v<C-w>l
 nnoremap <leader>s :new<CR>
+
+" switch between tabs
+noremap <C-Tab> :tabnext<CR>
+noremap <C-S-Tab> :tabprev<CR>
+
+" switch between tabs with cmd+1, cmd+2 and cmd+3
+map <D-1> 1gt
+map <D-2> 2gt
+map <D-3> 3gt
 
 " highlight 80+ cols
 map <leader>8 /\%>80v.\+<CR>
@@ -355,6 +367,7 @@ map <leader>m :!open -a Mou %<CR><CR>
 
 " easy switching
 nnoremap <leader>th :set ft=html<CR>
+nnoremap <leader>td :set ft=htmldjango<CR>
 nnoremap <leader>tp :set ft=python<CR>
 nnoremap <leader>tj :set ft=javascript<CR>
 
@@ -375,29 +388,39 @@ let g:EasyMotion_leader_key = '<leader><leader>'
 let g:indent_guides_guide_size = 1
 
 " ctrlp
-let g:ctrlp_map = '<leader>t'
+if executable('ag')
+  " use ag in ctrlp for listing files
+  let g:ctrlp_user_command = 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+  let g:ctrlp_use_caching = 0
+else
+  let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
+endif
+
+let g:ctrlp_map = '<C-p>'
 let g:ctrlp_match_window = 'bottom,order:top,min:1,max:20'
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 20
 let g:ctrlp_working_path_mode = 'ra'
-nmap <leader>b :CtrlPBuffer<CR>
+nmap <C-b> :CtrlPBuffer<CR>
+nmap <D-r> :CtrlPBufTag<CR>
 
 " seek
 let g:SeekKey = '<Space>'
 let g:SeekBackKey = '<U-Space>'
 
-" closetag
-let g:closetag_html_style = 1
-
 " snipmate
-imap <C-J> <Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
+imap <C-K> <Plug>snipMateNextOrTrigger
+smap <C-K> <Plug>snipMateNextOrTrigger
+
+" emmet
+let g:user_emmet_leader_key='<C-L>'
 
 " NERDTree
 let NERDTreeIgnore = ['\~$', '\.pyc$', '\.pyo$', '\.class$', '\.o$']
 map <silent> <leader>n :NERDTreeToggle<CR>
 map <silent> <leader>f :NERDTreeFind<CR>
-let g:NERDTreeDirArrows=0
+let g:NERDTreeDirArrows = 0
 
 " vundle
 nmap <leader>bi :BundleInstall<CR>
