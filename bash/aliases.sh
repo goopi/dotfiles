@@ -38,6 +38,10 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias flush="dscacheutil -flushcache"
 alias listen="lsof -i | grep LISTEN"
 
+# python
+alias pif="pip freeze > requirements.txt"
+alias pii="pip install -r requirements.txt"
+
 # ios
 alias simu="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
 
