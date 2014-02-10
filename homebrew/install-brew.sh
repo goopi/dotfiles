@@ -47,6 +47,7 @@ brew cleanup
 brew install macvim vim
 
 # spot
-curl https://raw.github.com/guille/spot/master/spot.sh -o /usr/local/bin/spot && chmod +x /usr/local/bin/spot
+# curl https://raw.github.com/guille/spot/master/spot.sh -o /usr/local/bin/spot && chmod +x /usr/local/bin/spot
+npm install -g spot
 
 exit 0
