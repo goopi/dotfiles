@@ -104,7 +104,7 @@ set scrolloff=3
 set nofoldenable
 
 " pasting large amounts of text
-set pastetoggle=<leader>.
+set pastetoggle=<D-e>
 
 " highlight all search matches
 set hlsearch
