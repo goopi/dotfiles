@@ -10,44 +10,53 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-  xterm-color) color_prompt=yes;;
-esac
+GOOPI_DEFAULT_COLOR="[00m"
+GOOPI_GRAY_COLOR="[37m"
+GOOPI_PINK_COLOR="[35m"
+GOOPI_GREEN_COLOR="[32m"
+GOOPI_ORANGE_COLOR="[33m"
+GOOPI_RED_COLOR="[31m"
+GOOPI_USER_COLOR=$GOOPI_PINK_COLOR
 
-# ~/dev/dir [master] $   # clean working directory
-# ~/dev/dir [master*] $  # dirty working directory
-parse_git_dirty() {
-  [[ $(git status 2> /dev/null | tail -n1 | head -c17) != "nothing to commit" ]] && echo "*"
+_vcprompt() {
+  prompt=$' on \033[34m%n\033[00m:\033[00m%b\033[32m%m%u'
+  vcprompt -f "$prompt"
 }
 
-parse_git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)] /"
+_backgroundjobs() {
+  jobs|python -c 'if 1:
+    import sys
+    items = ["\033[36m%s\033[37m" % x.split()[2]
+             for x in sys.stdin.read().splitlines()]
+    if items:
+      if len(items) > 2:
+        string = "%s, and %s" % (", ".join(items[:-1]), items[-1])
+      else:
+        string = ", ".join(items)
+      print("\033[37m running %s" % string)
+  '
 }
 
-# gs
-_gs_ps1() {
-  [[ -z $GS_NAME ]] || echo "$GS_NAME "
+_virtualenv() {
+  if [ x$VIRTUAL_ENV != x ]; then
+    echo -n $' \033[37mworkon \033[31m'
+    echo -n ${VIRTUAL_ENV##*/}
+    echo -n $'\033[00m'
+  fi
 }
 
-# current virtualenv
-_venv_ps1() {
-  [[ -z $VIRTUAL_ENV ]] || echo "(${VIRTUAL_ENV##*/}) "
-}
+export GOOPI_BASEPROMPT='
+\e${GOOPI_USER_COLOR}\u \
+\e${GOOPI_GRAY_COLOR}at \e${GOOPI_ORANGE_COLOR}\h \
+\e${GOOPI_GRAY_COLOR}in \e${GOOPI_GREEN_COLOR}\w\
+\e${GOOPI_GRAY_COLOR}`_vcprompt`\
+`_backgroundjobs`\
+`_virtualenv`\
+\e${GOOPI_DEFAULT_COLOR}'
+export PS1="\[\033[G\]${GOOPI_BASEPROMPT}
+λ "
 
-# don't let virtualenv show prompts by itself
-VIRTUAL_ENV_DISABLE_PROMPT=1
-
-# prompt
-export PS1="
-\[\033[01;34m\]\u \
-\[\033[01;39m\]at \
-\[\033[01;33m\]\h \
-\[\033[01;39m\]in \
-\[\033[01;35m\]\w \
-\[\033[01;31m\]\$(parse_git_branch \"(%s ) \")\
-\[\033[01;32m\]\$(_venv_ps1)\$(_gs_ps1)
-\[\033[01;33m\]λ\[\033[00m\] "
+export TERM=xterm-color
 
 # colored `grep`
 export GREP_OPTIONS="--color=auto" GREP_COLOR="1;32"
@@ -57,14 +66,13 @@ export CLICOLOR=1
 
 if [ `uname` == "Darwin" ]; then
   export LSCOLORS=ExGxFxDxCxHxHxCbCeEbEb
+  # internationalization variables
+  export LC_CTYPE=en_US.UTF-8
+  export LC_ALL=en_US.utf-8
+  export LANG=en_US.UTF-8
 else
   alias ls="ls --color=auto"
 fi
-
-# internationalization variables
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.utf-8
-export LANG=en_US.UTF-8
 
 # editor
 export EDITOR=vim
@@ -78,12 +86,18 @@ if [ -f ~/.bash/aliases.sh ]; then source ~/.bash/aliases.sh; fi
 if [ -f ~/.bash/functions.sh ]; then source ~/.bash/functions.sh; fi
 if [ -f ~/.bash/completion.sh ]; then source ~/.bash/completion.sh; fi
 
+# colouriser
+if [ -f /usr/local/opt/grc/etc/grc.bashrc ]; then source /usr/local/opt/grc/etc/grc.bashrc; fi
+
 # node
 export NODE_ENV="development"
 export PATH="/usr/local/share/npm/bin:$PATH"
 
 # python
 export PYTHONSTARTUP=~/.pythonstartup.py
+
+# don't let virtualenv show prompts by itself
+VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # virtualenvwrapper and pip
 export WORKON_HOME=$HOME/.venvs
@@ -95,9 +109,6 @@ export PATH="/usr/local/Cellar/ruby/2.0.0-p247/bin:$PATH"
 # go
 export GOPATH=$HOME/goopi/go
 export PATH=$PATH:$GOPATH/bin
-
-# lein2
-export PATH="$HOME/.lein/bin:$PATH"
 
 # heroku
 export PATH="/usr/local/heroku/bin:$PATH"
