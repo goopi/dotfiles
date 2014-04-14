@@ -56,8 +56,6 @@ export GOOPI_BASEPROMPT='
 export PS1="\[\033[G\]${GOOPI_BASEPROMPT}
 λ "
 
-export TERM=xterm-color
-
 # colored `grep`
 export GREP_OPTIONS="--color=auto" GREP_COLOR="1;32"
 
