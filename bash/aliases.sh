@@ -4,6 +4,7 @@ alias pu="pushd"
 alias po="popd"
 alias o="open"
 alias h="history"
+alias delwhere="xattr -d com.apple.metadata:kMDItemWhereFroms"
 
 # kill
 alias ka9="killall -9"
