@@ -310,10 +310,13 @@ nnoremap <leader>s :new<CR>
 noremap <C-Tab> :tabnext<CR>
 noremap <C-S-Tab> :tabprev<CR>
 
-" switch between tabs with cmd+1, cmd+2 and cmd+3
+" switch between tabs with cmd+#
 map <D-1> 1gt
 map <D-2> 2gt
 map <D-3> 3gt
+map <D-4> 4gt
+map <D-5> 5gt
+map <D-6> 6gt
 
 " highlight 80+ cols
 map <leader>8 /\%>80v.\+<CR>
