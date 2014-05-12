@@ -14,6 +14,7 @@ call vundle#rc()
 " vundles
 Bundle 'Align'
 Bundle 'ap/vim-css-color'
+Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'einars/js-beautify'
 Bundle 'epmatsw/ag.vim'
@@ -43,7 +44,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-vividchalk'
 Bundle 'VimClojure'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'wavded/vim-stylus'
@@ -271,7 +271,7 @@ if has('gui_running')
     set guifont=Menlo:h14
   endif
 else
-  colorscheme vividchalk
+  colorscheme Tomorrow-Night-Bright
 endif
 
 " set up some custom colors
