@@ -28,6 +28,8 @@ alias vv="mvim"
 alias vi="v"
 alias vu="v +BundleInstall +qall"
 
+alias ss="subl"
+
 # tmux
 alias tm="tmux"
 alias tmn="tmux new -s"
