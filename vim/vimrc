@@ -13,10 +13,7 @@ call vundle#rc()
 
 " vundles
 Bundle 'Align'
-Bundle 'ap/vim-css-color'
 Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'einars/js-beautify'
 Bundle 'epmatsw/ag.vim'
 Bundle 'fsouza/go.vim'
 Bundle 'gmarik/vundle'
@@ -24,35 +21,19 @@ Bundle 'goldfeld/vim-seek'
 Bundle 'Indent-Guides'
 Bundle 'IndexedSearch'
 Bundle 'itchyny/lightline.vim'
-Bundle 'JulesWang/css.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'lsdr/monokai'
-Bundle 'maksimr/vim-jsbeautify'
-Bundle 'mattn/emmet-vim'
-Bundle 'mitsuhiko/fruity-vim-colorscheme'
-Bundle 'mitsuhiko/vim-jinja'
 Bundle 'mitsuhiko/vim-python-combined'
-Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
 Bundle 'tComment'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'VimClojure'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'wavded/vim-stylus'
-
-" snippets
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
 
 " enable filetype plugins and indentation
 filetype plugin indent on
@@ -134,9 +115,7 @@ set showmatch
 set matchtime=2
 
 " highlight current line
-if has('gui_running')
-  set cursorline
-endif
+set cursorline
 
 " show invisible characters off
 set nolist
@@ -255,39 +234,18 @@ set background=dark
 " the term has 256 colors
 set t_Co=256
 
-if has('gui_running')
-  colorscheme fruity
-
-  " hide menu bar
-  set guioptions-=m
-  " hide toolbar
-  set guioptions-=T
-  " hide left-hand scrollbar
-  set guioptions-=L
-  " hide right-hand scrollbar
-  set guioptions-=r
-
-  if has('gui_macvim')
-    set guifont=Menlo:h14
-  endif
-else
-  colorscheme Tomorrow-Night-Bright
-endif
+" colorscheme
+colorscheme Tomorrow-Night-Bright
 
 " set up some custom colors
 highlight Visual    ctermbg=3     ctermfg=0
-highlight Visual    guibg=Yellow  guifg=Black
 highlight Pmenu     ctermbg=9     ctermfg=15
-highlight Pmenu     guibg=DarkRed guifg=White
 highlight PmenuSel  ctermbg=15    ctermfg=0
-highlight PmenuSel  guibg=White   guifg=Black
-highlight Search    ctermbg=9     ctermfg=15
+highlight Search    ctermbg=8     ctermfg=15
 
 " set up easymotion colors
 highlight EasyMotionTarget ctermbg=NONE ctermfg=DarkRed
-highlight EasyMotionTarget guibg=NONE   guifg=Red
 highlight EasyMotionShade  ctermbg=NONE ctermfg=Grey
-highlight EasyMotionShade  guibg=NONE   guifg=Grey
 
 " sets leader to ',' and localleader to '\'
 let mapleader = ','
@@ -362,7 +320,6 @@ map <leader>m :!open -a Mou %<CR><CR>
 
 " easy switching
 nnoremap <leader>th :set ft=html<CR>
-nnoremap <leader>td :set ft=htmljinja<CR>
 nnoremap <leader>tp :set ft=python<CR>
 nnoremap <leader>tj :set ft=javascript<CR>
 
@@ -404,13 +361,6 @@ nmap <D-r> :CtrlPBufTag<CR>
 let g:SeekKey = '<Space>'
 let g:SeekBackKey = '<U-Space>'
 
-" snipmate
-imap <C-K> <Plug>snipMateNextOrTrigger
-smap <C-K> <Plug>snipMateNextOrTrigger
-
-" emmet
-let g:user_emmet_leader_key='<C-L>'
-
 " NERDTree
 let NERDTreeIgnore = ['\~$', '\.pyc$', '\.pyo$', '\.class$', '\.o$']
 map <silent> <leader>n :NERDTreeToggle<CR>
@@ -450,59 +400,24 @@ map <leader>rn :call RenameFile()<CR>
 " do syntax highlight syncing from start
 autocmd BufEnter * :syntax sync fromstart
 
-" c
-autocmd FileType c setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
-autocmd FileType c setlocal commentstring=/*\ %s\ */
-let c_no_curly_error=1
-let g:syntastic_c_include_dirs = ['include', '../include']
-let g:syntastic_c_compiler = 'clang'
-
-" css
-autocmd FileType css setlocal commentstring=/*\ %s\ */
-autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
-
 " go
 autocmd BufNewFile,BufRead *.go setlocal ft=go
 autocmd FileType go setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+
+" python
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 formatoptions=croqj softtabstop=4 textwidth=74 comments=:#\:,:#
+
+" ruby
+autocmd BufRead,BufNewFile {Gemfile,Rakefile,*.rake,config.ru} set ft=ruby
+
+" javascript
+autocmd BufNewFile,BufRead *.json setlocal ft=javascript
+autocmd FileType javascript setlocal commentstring=//\ %s
+
+" css
+autocmd FileType css setlocal commentstring=/*\ %s\ */
 
 " html / xml
 autocmd FileType xml,html,htmljinja,htmldjango setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html setlocal commentstring=<!--\ %s\ -->
 autocmd FileType htmljinja setlocal commentstring={#\ %s\ #}
-let html_no_rendering=1
-let g:syntastic_html_checkers = []
-
-" javascript
-autocmd BufNewFile,BufRead *.json setlocal ft=javascript
-autocmd FileType javascript setlocal commentstring=//\ %s
-autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
-autocmd FileType javascript let b:javascript_fold = 0
-let javascript_enable_domhtmlcss=1
-let g:syntastic_javascript_checkers = [] 
-
-" python
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
-\ formatoptions=croqj softtabstop=4 textwidth=74 comments=:#\:,:#
-let python_highlight_all=1
-let python_highlight_exceptions=0
-let python_highlight_builtins=0
-let python_slow_sync=1
-
-let g:syntastic_python_checkers=['flake8', 'python']
-
-" Don't warn on
-"   E121 continuation line indentation is not a multiple of four
-"   E128 continuation line under-indented for visual indent
-"   E711 comparison to None should be 'if cond is not None:'
-"   E301 expected 1 blank line, found 0
-"   E261 at least two spaces before inline comment
-"   E241 multiple spaces after ':'
-"   E124 closing bracket does not match visual indentation
-"   E126 continuation line over-indented for hanging indent
-"   E721 do not compare types, use 'isinstance()'
-let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
-    \ --max-line-length=84'
-
-" ruby
-autocmd BufRead,BufNewFile {Gemfile,Rakefile,*.rake,config.ru} set ft=ruby
