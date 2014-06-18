@@ -22,12 +22,9 @@ alias lns="ln -s"
 alias lh="ls -alt | head"
 alias rmr="rm -rf"
 
-# vim
+# editors
 alias v="vim"
-alias vv="mvim"
 alias vi="v"
-alias vu="v +BundleInstall +qall"
-
 alias ss="subl"
 
 # tmux
@@ -42,11 +39,11 @@ alias flush="dscacheutil -flushcache"
 alias listen="lsof -i | grep LISTEN"
 
 # python
-alias pif="pip freeze > requirements.txt"
-alias pii="pip install -r requirements.txt"
+alias pipf="pip freeze >"
+alias pipi="pip install -r"
 
 # ios
-alias simu="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
+alias ios="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
 
 # git
 alias st="git status -sb"
