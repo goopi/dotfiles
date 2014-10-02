@@ -23,9 +23,27 @@
   changed = green
   untracked = cyan
 [alias]
+  st = status -sb
+  ci = commit
+  co = checkout
+  br = branch
+  cp = cherry-pick
+  cps = cherry-pick -s
   today = diff @{yesterday}.. --stat
   meh = commit --amend
+  wdiff = diff --word-diff=color
+  wshow = show --word-diff=color
   lasttag = describe --tags --abbrev=0
+  branches = branch -vv
+  getbranch = "!x() { git co origin/$1 -b $1; }; x"
+  slog = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d\\ %C(auto,reset)%s\\ \\ [%C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)]"
+  glog = log --graph --pretty=format:"%C(auto,yellow)%h%C(auto)%d\\ %C(auto,reset)%s\\ \\ [%C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)]"
   gflog = log -p --cc --graph --decorate
+  wtf = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d%C(auto,reset)\\ by\\ %C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)%n\\ %s%n" --stat
+  unci = reset HEAD^
+  uncommit = reset HEAD^
+  ls = ls-files
 [push]
 	default = current
+[diff]
+  algorithm = patience
