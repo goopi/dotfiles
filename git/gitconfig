@@ -43,6 +43,7 @@
   unci = reset HEAD^
   uncommit = reset HEAD^
   ls = ls-files
+  clist = shortlog -s -n
 [push]
 	default = current
 [diff]
