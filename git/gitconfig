@@ -3,48 +3,67 @@
 [user]
   name = Gustavo Leguizamon
   email = leguizamon.gustavo@gmail.com
+
 [github]
   user = goopi
+
 [color]
   ui = true
+
 [core]
   excludesfile = ~/.gitignore
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
 [color "branch"]
   current = red
   local = yellow
   remote = green
+
 [color "diff"]
   meta = cyan
   frag = magenta
   old = red bold
   new = green bold
+
 [color "status"]
   added = yellow
   changed = green
   untracked = cyan
-[alias]
-  st = status -sb
-  ci = commit
-  co = checkout
-  br = branch
-  cp = cherry-pick
-  cps = cherry-pick -s
-  today = diff @{yesterday}.. --stat
-  meh = commit --amend
-  wdiff = diff --word-diff=color
-  wshow = show --word-diff=color
-  lasttag = describe --tags --abbrev=0
-  branches = branch -vv
-  getbranch = "!x() { git co origin/$1 -b $1; }; x"
-  slog = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d\\ %C(auto,reset)%s\\ \\ [%C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)]"
-  glog = log --graph --pretty=format:"%C(auto,yellow)%h%C(auto)%d\\ %C(auto,reset)%s\\ \\ [%C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)]"
-  gflog = log -p --cc --graph --decorate
-  wtf = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d%C(auto,reset)\\ by\\ %C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)%n\\ %s%n" --stat
-  unci = reset HEAD^
-  uncommit = reset HEAD^
-  ls = ls-files
-  clist = shortlog -s -n
+
 [push]
-	default = current
+  default = current
+
 [diff]
   algorithm = patience
+  tool = vimdiff
+
+[difftool]
+  prompt = false
+
+[alias]
+  a = add
+  au = add -u
+  st = status -sb
+  cm = commit -m
+  ca = commit --amend
+  co = checkout
+  contrib = shortlog -s -n
+  df = diff
+  df1 = diff HEAD~1
+  ds = diff --stat
+  today = diff @{yesterday}.. --stat
+  s = show --name-only
+  sh = show --pretty=short --stat
+  me = merge --no-ff
+  pu = push -u
+  put = push --tags
+  rh = reset --hard
+  rh1 = reset --hard HEAD~1
+  uncommit = reset HEAD^
+  ta = tag -a
+  todo = grep -A3 TODO
+  fixme = grep -A3 FIXME
+  ls = ls-files
+  lg = log -p
+  lo = log --pretty='format:%Cgreen%h%Creset %an - %s' --graph
+  loo = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d%C(auto,reset)\\ by\\ %C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)%n\\ %s%n" --stat

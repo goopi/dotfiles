@@ -2,7 +2,7 @@ install: link
 
 install-osx: link osx
 
-link: install-bash install-screen install-tmux \
+link: install-bash install-zsh install-tmux \
 	install-vim install-git install-python
 
 install-bash:
@@ -13,11 +13,14 @@ install-bash:
 	@ln -sfv `pwd`/bash/inputrc ~/.inputrc
 	@mkdir -p ~/.bash
 	@ln -sfv `pwd`/bash/aliases.sh ~/.bash/aliases.sh
-	@ln -sfv `pwd`/bash/completion.sh ~/.bash/completion.sh
 	@ln -sfv `pwd`/bash/functions.sh ~/.bash/functions.sh
 
+install-zsh:
+	@ln -sfv `pwd`/zsh/zshrc ~/.zshrc
+	@mkdir -p ~/.zsh
+	@ln -sfv `pwd`/zsh/pj.zsh ~/.zsh/pj.zsh
+
 install-vim:
-	@ln -sfv `pwd`/ctags/ctags ~/.ctags
 	@ln -sfv `pwd`/vim ~/.vim
 	@ln -sfv ~/.vim/vimrc ~/.vimrc
 
@@ -27,9 +30,6 @@ install-git:
 
 install-python:
 	@ln -sfv `pwd`/python/pythonstartup.py ~/.pythonstartup.py
-
-install-screen:
-	@ln -sfv `pwd`/screen/screenrc ~/.screenrc
 
 install-tmux:
 	@ln -sfv `pwd`/tmux/tmux.conf ~/.tmux.conf

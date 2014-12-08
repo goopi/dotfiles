@@ -1,0 +1,102 @@
+
+setopt AUTO_CD
+setopt NO_BEEP
+setopt NO_CORRECT_ALL
+setopt COMPLETE_ALIASES
+setopt COMPLETE_IN_WORD
+setopt ALWAYS_TO_END
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
+setopt PROMPT_SUBST
+
+export HISTSIZE=1000
+export SAVEHIST=1000
+export CLICOLOR=1
+export EDITOR=vim
+export GIT_EDITOR=vim
+export PAGER=less
+
+if [ -z $HISTFILE ]; then
+  export HISTFILE=$HOME/.zsh_history
+fi
+
+source ~/.bash/aliases.sh
+source ~/.bash/functions.sh
+
+autoload -U compinit && compinit
+autoload -U colors && colors
+
+# completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command 'ps -u `whoami` -o pid,user,comm -w -w'
+
+# key-bindings
+# emacs mode
+bindkey -e
+bindkey '^r' history-incremental-search-backward
+bindkey '^[[5~' up-line-or-history
+bindkey '^[[6~' down-line-or-history
+# make search up and down work, so partially type and
+# hit up/down to find relevant stuff
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
+# prompt
+
+function _vcprompt() {
+  vcprompt -f " (%b%m%u)"
+}
+
+function _virtualenv() {
+  if [ x$VIRTUAL_ENV != x ]; then
+    echo -n $' ('
+    echo -n ${VIRTUAL_ENV##*/}
+    echo -n $')'
+  fi
+}
+
+# ⚡ λ ∴
+export PROMPT='\
+%{$fg[green]%}∴ \
+%{$fg[white]%}%C\
+%{$fg[black]%}$(_vcprompt)\
+%{$fg[red]%}$(_virtualenv) \
+%{$reset_color%}'
+export RPROMPT='\
+%{$fg[red]%}%(1j.[%j] .)\
+%{$fg[yellow]%}%n\
+%{$reset_color%} \
+%d'
+
+# pj
+PROJECT_PATHS=(~/Code)
+source ~/.zsh/pj.zsh
+
+# virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export WORKON_HOME=$HOME/.venvs
+if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
+
+# go
+export GOPATH=$HOME/goopi/go
+export PATH=$PATH:$GOPATH/bin
+
+# heroku
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# homebrew
+export PATH="/usr/local/bin:$PATH"
+
+# node
+export NODE_ENV="development"
+export PATH="/usr/local/share/npm/bin:$PATH"
+
+# python
+export PYTHONSTARTUP=~/.pythonstartup.py
+
+#ruby
+export PATH="/usr/local/Cellar/ruby/2.0.0-p247/bin:$PATH"

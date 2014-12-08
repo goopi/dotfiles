@@ -1,42 +1,46 @@
 #!/bin/bash
 
-# Install brew
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+# install homebrew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Check for Homebrew
+# check for homebrew
 if test ! $(which brew)
 then
   exit
 fi
 
-# Make sure we're using the latest Homebrew
+# make sure we're using the latest homebrew
 brew update
 
-# Upgrade any already-installed formula
+# upgrade any already-installed formula
 brew upgrade
 
-# Install GNU core utilities
+# install GNU core utilities
 brew install coreutils automake findutils
 
-# Install more recent version of bash
-brew install bash
+# install more recent version of bash and zsh
+brew install bash zsh
+# which zsh | sudo tee -a /etc/shells
+# chsh -s $(which zsh)
 
-# Install wget with IRI support
+# install wget with IRI support
 brew install wget --enable-iri
 
-# Install more recent versions of some OSX tools
+# install more recent versions of some OSX tools
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
-# brew tap josegonzalez/homebrew-php
-# brew install php54
 
-# Install everything else
-brew install ack the_silver_searcher git jpeg git-extras vim vcprompt
+# install git
+brew install git --without-completions
+brew install git-extras
 
-# Remove outdated versions from the cellar
+# install everything else
+brew install ack the_silver_searcher jpeg vim vcprompt
+
+# remove outdated versions from the cellar
 brew cleanup
 
-# Install spot
-npm install -g spot
+# install spot
+npm install -g git+ssh://git@github.com/guille/spot
 
 exit 0

@@ -405,7 +405,7 @@ autocmd BufNewFile,BufRead *.go setlocal ft=go
 autocmd FileType go setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 
 " python
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 formatoptions=croqj softtabstop=4 textwidth=74 comments=:#\:,:#
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 textwidth=74 comments=:#\:,:#
 
 " ruby
 autocmd BufRead,BufNewFile {Gemfile,Rakefile,*.rake,config.ru} set ft=ruby

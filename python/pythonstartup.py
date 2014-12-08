@@ -1,3 +1,4 @@
+
 def _init():
     import atexit
     import os
@@ -41,7 +42,6 @@ def _init():
 
     atexit.register(readline.write_history_file, histfile)
 
-
     def _magic_uuid(val=None):
         if val is None:
             return uuid.uuid4()
@@ -50,7 +50,6 @@ def _init():
         elif len(val) == 16:
             return uuid.UUID(bytes=val)
         return uuid.UUID(val)
-
 
     helpers = types.ModuleType('helpers')
     helpers.histfile = histfile
@@ -65,6 +64,7 @@ def _init():
     helpers.td = datetime.timedelta
     helpers.timedelta = datetime.timedelta
     helpers.time = time.time
+
     __builtin__.h = helpers
 
 
