@@ -19,3 +19,6 @@ alias listen="lsof -i | grep LISTEN"
 
 alias pipf="pip freeze >"
 alias pipi="pip install -r"
+
+alias djs="./manage.py runserver --nothreading 0:3000"
+alias djt="./manage.py shell"

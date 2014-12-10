@@ -59,16 +59,15 @@ function _virtualenv() {
 
 # ⚡ λ ∴
 export PROMPT='\
-%{$fg[green]%}∴ \
+%{$fg[green]%}λ \
 %{$fg[white]%}%C\
 %{$fg[black]%}$(_vcprompt)\
 %{$fg[red]%}$(_virtualenv) \
 %{$reset_color%}'
 export RPROMPT='\
 %{$fg[red]%}%(1j.[%j] .)\
-%{$fg[yellow]%}%n\
-%{$reset_color%} \
-%d'
+%{$fg[black]%}%n@%m\
+%{$reset_color%}'
 
 # pj
 PROJECT_PATHS=(~/Code)
