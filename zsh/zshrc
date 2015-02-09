@@ -17,6 +17,8 @@ export EDITOR=vim
 export GIT_EDITOR=vim
 export PAGER=less
 
+LC_CTYPE='en_US.UTF-8'
+
 if [ -z $HISTFILE ]; then
   export HISTFILE=$HOME/.zsh_history
 fi
@@ -57,17 +59,15 @@ function _virtualenv() {
   fi
 }
 
-# ⚡ λ ∴
+# λ ∴
 export PROMPT='\
-%{$fg[green]%}λ \
+%{$fg[cyan]%} ∴\
+%{$fg[black]%}$(_virtualenv) \
 %{$fg[white]%}%C\
 %{$fg[black]%}$(_vcprompt)\
-%{$fg[red]%}$(_virtualenv) \
-%{$reset_color%}'
-export RPROMPT='\
-%{$fg[red]%}%(1j.[%j] .)\
-%{$fg[black]%}%n@%m\
-%{$reset_color%}'
+%{$fg[black]%}%(1j. (%j).)\
+%{$reset_color%} '
+export RPROMPT=''
 
 # pj
 PROJECT_PATHS=(~/Code)
