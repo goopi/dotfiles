@@ -51,6 +51,7 @@
   df = diff
   df1 = diff HEAD~1
   ds = diff --stat
+  ge = grep -e
   today = diff @{yesterday}.. --stat
   s = show --name-only
   sh = show --pretty=short --stat
