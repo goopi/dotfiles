@@ -1,4 +1,3 @@
-# dotfiles FTW
 
 ## Install
 

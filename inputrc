@@ -1,30 +1,15 @@
 
-# vi keybindings for everything that uses readline
-set editing-mode vi
-set keymap vi
-
-$if mode=vi
-  set keymap vi-command
-  "gg": beginning-of-history
-  "G": end-of-history
-
-  set keymap vi-insert
-  "\C-l": clear-screen
-  "\C-w": backward-kill-word
-  "\C-a": beginning-of-line
-  "\C-e": end-of-line
-  "\e[5C": forward-word
-  "\e[5D": backward-word
-  # auto-complete from the history
-  "\C-p": history-search-backward
-  "\C-n": history-search-forward
-$endif
+set editing-mode emacs
+set keymap emacs
 
 # make tab autocomplete regardless of filename case
 set completion-ignore-case on
 
 # list all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
+
+# immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
 
 # show all autocomplete results at once
 set page-completions off
@@ -38,8 +23,7 @@ set page-completions off
 # for a word, ask to show them all
 set completion-query-items 200
 
-# show extra file information when completing,
-# like `ls -F` does
+# show extra file information when completing, like `ls -F` does
 set visible-stats on
 
 # allow UTF-8 input and output, instead of showing
