@@ -106,14 +106,8 @@ chflags nohidden ~/Library
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
 
-# Minimize windows into their application's icon
-defaults write com.apple.dock minimize-to-application -bool true
-
 # Disable Dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
-
-# Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true

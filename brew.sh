@@ -35,7 +35,7 @@ brew tap caskroom/cask
 brew install brew-cask
 brew cask install caffeine google-chrome dropbox transmission evernote \
 	tvshows appcleaner slack spotify the-unarchiver imageoptim \
-	bettertouchtool magic-launch secrets limechat movist mplayerx \
+	bettertouchtool magic-launch secrets limechat mplayerx \
 	sequel-pro virtualbox skype sqlprosqlite
 
 npm install -g spot

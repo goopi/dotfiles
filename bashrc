@@ -47,12 +47,12 @@ COLOR_PURPLE="[35m"
 COLOR_DARK_GRAY="[1;30m"
 
 export PS1='
-\e${COLOR_PURPLE} ∴ \
-\e${COLOR_CYAN}`_virtualenv`\
-\e${COLOR_DARK_GRAY}\W\
-\e${COLOR_BLUE}`_vcprompt`\
-\e${COLOR_RED}$([ \j -gt 0 ] && echo " [\j]")\
-\e${COLOR_BLACK} '
+\[\e${COLOR_PURPLE}\] ∴ \
+\[\e${COLOR_CYAN}\]`_virtualenv`\
+\[\e${COLOR_DARK_GRAY}\]\W\
+\[\e${COLOR_BLUE}\]`_vcprompt`\
+\[\e${COLOR_RED}\]$([ \j -gt 0 ] && echo " [\j]")\
+\[\e${COLOR_BLACK}\] '
 
 alias oo="open ."
 alias ..="cd .."
@@ -90,6 +90,10 @@ export WORKON_HOME=$HOME/.venvs
 if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
+
+# golang
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
 
 # node
 export NODE_ENV="development"
