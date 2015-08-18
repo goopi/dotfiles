@@ -267,7 +267,7 @@ nnoremap <leader>tp :set ft=python<CR>
 autocmd BufEnter * :syntax sync fromstart
 
 autocmd BufNewFile,BufRead *.go setlocal ft=go
-autocmd FileType go setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+autocmd FileType go setlocal noexpandtab shiftwidth=6 tabstop=6 softtabstop=6
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 autocmd BufNewFile,BufRead *.json setlocal ft=javascript
 autocmd FileType javascript setlocal commentstring=//\ %s

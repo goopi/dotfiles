@@ -92,7 +92,7 @@ if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
 fi
 
 # golang
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/Code/go
 export PATH=$PATH:$GOPATH/bin
 
 # node
