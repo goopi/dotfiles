@@ -179,15 +179,14 @@ set wildignore+=*.pyc,*.class,*.o,*/node_modules/*
 
 " the term has 256 colors
 set t_Co=256
-" set background=dark
+set background=dark
+colorscheme dracula
 if has('gui_running')
   set guioptions=haMR
   set cursorline
   if has('gui_macvim')
     set guifont=Menlo:h14
   endif
-else
-  colorscheme default
 endif
 
 " set up easymotion colors
