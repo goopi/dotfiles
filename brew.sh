@@ -20,7 +20,7 @@ brew update
 brew upgrade --all
 
 brew install coreutils automake findutils bash ruby node ack \
-	the_silver_searcher jpeg vcprompt tmux tree
+	the_silver_searcher jpeg vcprompt tmux tree htop
 brew install vim --override-system-vi
 brew install macvim
 brew install wget --enable-iri
@@ -36,7 +36,7 @@ brew install brew-cask
 brew cask install caffeine google-chrome dropbox transmission evernote \
 	tvshows appcleaner slack spotify the-unarchiver imageoptim \
 	bettertouchtool magic-launch secrets limechat mplayerx \
-	sequel-pro virtualbox skype sqlprosqlite
+	sequel-pro virtualbox skype sqlprosqlite iperf
 
 npm install -g spot
 
