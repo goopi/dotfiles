@@ -66,8 +66,6 @@ alias tml="tmux ls"
 alias tma="tmux a -t"
 alias pipf="pip freeze >"
 alias pipi="pip install -r"
-alias djs="./manage.py runserver 0:8000"
-alias djt="./manage.py shell_plus"
 alias delpyc="find . -name '*.pyc' | xargs rm"
 alias delds="find . -name '.DS_Store' | xargs rm"
 alias ping="ping -c 5"
@@ -98,6 +96,3 @@ export PATH=$PATH:$GOPATH/bin
 # node
 export NODE_ENV="development"
 export PATH="/usr/local/share/npm/bin:$PATH"
-
-# ruby
-export PATH="/usr/local/Cellar/ruby/2.2.2/bin:$PATH"
