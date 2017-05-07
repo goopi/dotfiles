@@ -1,4 +1,3 @@
-
 export CLICOLOR=1
 export EDITOR=vim
 export GIT_EDITOR=vim
@@ -26,10 +25,6 @@ shopt -s checkwinsize
 
 # PS1
 
-function _vcprompt() {
-  vcprompt -f " (%b%m%u)"
-}
-
 function _virtualenv() {
   if [ x$VIRTUAL_ENV != x ]; then
     echo -n $'('
@@ -47,10 +42,10 @@ COLOR_PURPLE="[35m"
 COLOR_DARK_GRAY="[1;30m"
 
 export PS1='
-\[\e${COLOR_PURPLE}\] ∴ \
+\[\e${COLOR_GREEN}\] ♣︎ \
 \[\e${COLOR_CYAN}\]`_virtualenv`\
 \[\e${COLOR_DARK_GRAY}\]\W\
-\[\e${COLOR_BLUE}\]`_vcprompt`\
+\[\e${COLOR_BLUE}\]`vcprompt -f " (%b%m%u)"`\
 \[\e${COLOR_RED}\]$([ \j -gt 0 ] && echo " [\j]")\
 \[\e${COLOR_BLACK}\] '
 
@@ -96,3 +91,5 @@ export PATH=$PATH:$GOPATH/bin
 # node
 export NODE_ENV="development"
 export PATH="/usr/local/share/npm/bin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$PATH"
