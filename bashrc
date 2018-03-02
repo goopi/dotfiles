@@ -64,6 +64,8 @@ alias pipi="pip install -r"
 alias delpyc="find . -name '*.pyc' | xargs rm"
 alias delds="find . -name '.DS_Store' | xargs rm"
 alias ping="ping -c 5"
+alias h="http"
+alias hjwt="h --auth-type=jwt"
 
 function f() {
   find . -iname "*$@*.*" | grep "$@"
