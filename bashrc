@@ -42,7 +42,7 @@ COLOR_PURPLE="[35m"
 COLOR_DARK_GRAY="[1;30m"
 
 export PS1='
-\[\e${COLOR_GREEN}\] ♣︎ \
+\[\e${COLOR_GREEN}\] ∴ \
 \[\e${COLOR_CYAN}\]`_virtualenv`\
 \[\e${COLOR_DARK_GRAY}\]\W\
 \[\e${COLOR_BLUE}\]`vcprompt -f " (%b%m%u)"`\
