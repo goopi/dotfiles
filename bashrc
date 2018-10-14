@@ -66,6 +66,8 @@ alias delds="find . -name '.DS_Store' | xargs rm"
 alias ping="ping -c 5"
 alias h="http"
 alias hjwt="h --auth-type=jwt"
+alias yt="youtube-dl -f best --"
+alias d8601="date -u +%Y-%m-%dT%H:%M:%SZ"
 
 function f() {
   find . -iname "*$@*.*" | grep "$@"

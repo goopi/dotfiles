@@ -11,3 +11,5 @@ fi
 if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
 fi
+
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
