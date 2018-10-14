@@ -20,24 +20,20 @@ brew update
 brew upgrade --all
 
 brew install coreutils automake findutils bash ruby node ack \
-	the_silver_searcher jpeg vcprompt tmux tree htop
+  the_silver_searcher jpeg libmagic vcprompt tmux tree htop jq go \
+  httpie ripgrep
 brew install vim --override-system-vi
 brew install macvim
 brew install wget --enable-iri
-brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 brew install git --with-brewed-openssl
 brew install git-extras
 
 brew cleanup
 
-brew tap caskroom/cask
-brew install brew-cask
-brew cask install caffeine google-chrome dropbox transmission evernote \
-	tvshows appcleaner slack spotify the-unarchiver imageoptim \
-	bettertouchtool magic-launch secrets limechat mplayerx \
-	sequel-pro virtualbox skype sqlprosqlite iperf
-
-npm install -g spot
+# brew tap caskroom/cask
+# brew install brew-cask
+# brew cask install caffeine transmission appcleaner the-unarchiver \
+# imageoptim bettertouchtool magic-launch iperf
 
 exit 0
