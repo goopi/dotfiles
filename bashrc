@@ -81,6 +81,7 @@ fi
 export PATH="/usr/local/bin:$PATH"
 
 # python
+export PATH="~/Library/Python/3.7/bin:$PATH"
 export PYTHONSTARTUP=~/.pythonstartup.py
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export WORKON_HOME=$HOME/.venvs

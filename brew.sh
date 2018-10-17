@@ -31,6 +31,8 @@ brew install git-extras
 
 brew cleanup
 
+brew cask
+brew cask install quicklook-json qlimagesize
 # brew tap caskroom/cask
 # brew install brew-cask
 # brew cask install caffeine transmission appcleaner the-unarchiver \
