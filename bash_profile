@@ -13,3 +13,5 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

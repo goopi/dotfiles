@@ -68,6 +68,7 @@ alias h="http"
 alias hjwt="h --auth-type=jwt"
 alias yt="youtube-dl -f best --"
 alias d8601="date -u +%Y-%m-%dT%H:%M:%SZ"
+alias headers="httpstat"
 
 function f() {
   find . -iname "*$@*.*" | grep "$@"
@@ -90,7 +91,7 @@ if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
 fi
 
 # golang
-export GOPATH=$HOME/Code/go
+export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
 
 # node
