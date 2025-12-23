@@ -19,13 +19,15 @@ else
   alias ls="ls --color=auto"
 fi
 
-# append to the history file, don't overwrite it
-shopt -s histappend
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS
-shopt -s checkwinsize
-shopt -s cmdhist
-
+# bash-only
+if [ -n "$BASH_VERSION" ]; then
+  # append to the history file, don't overwrite it
+  shopt -s histappend
+  # check the window size after each command and, if necessary,
+  # update the values of LINES and COLUMNS
+  shopt -s checkwinsize
+  shopt -s cmdhist
+fi
 
 # PS1
 
@@ -39,12 +41,17 @@ COLOR_CYAN="[36m"
 COLOR_RED="[31m"
 COLOR_DARK_GRAY="[37m"
 
-export PS1='\n\[\e${COLOR_GREEN}\] ∴ \
+if [ -n "$BASH_VERSION" ]; then
+  export PS1='\n\[\e${COLOR_GREEN}\] ∴ \
 \[\e${COLOR_CYAN}\]$(_virtualenv)\
 \[\e${COLOR_DARK_GRAY}\]\W\
 \[\e${COLOR_BLUE}\]$(vcprompt -f " (%b%m%u)" 2>/dev/null)\
 \[\e${COLOR_RED}\]$([ \j -gt 0 ] && echo " [\j]")\
 \[\e[0m\] '
+elif [ -n "$ZSH_VERSION" ]; then
+  setopt promptsubst
+  PROMPT=$'\n%F{green}∴ %F{cyan}$(_virtualenv)%F{white}%1~%F{blue}$(vcprompt -f " (%b%m%u)" 2>/dev/null)%F{red}%(1j| [%j]|)%f '
+fi
 
 alias grep='grep --color=auto'
 alias oo="open ."
@@ -80,8 +87,11 @@ function f() {
   find . -iname "*$@*.*" | grep "$@"
 }
 
-if [ -f ~/.bin/git_completion ]; then
-  source ~/.bin/git_completion
+# bash-only
+if [ -n "$BASH_VERSION" ]; then
+  if [ -f ~/.bin/git_completion ]; then
+    source ~/.bin/git_completion
+  fi
 fi
 
 # homebrew

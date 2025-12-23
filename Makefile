@@ -4,6 +4,7 @@ link:
 	@ln -sfv `pwd`/bin ~/.bin
 	@ln -sfv `pwd`/bash_profile ~/.bash_profile
 	@ln -sfv `pwd`/bashrc ~/.bashrc
+	@ln -sfv `pwd`/zshrc ~/.zshrc
 	@ln -sfv `pwd`/inputrc ~/.inputrc
 	@ln -sfv `pwd`/gitconfig ~/.gitconfig
 	@ln -sfv `pwd`/gitignore ~/.gitignore
